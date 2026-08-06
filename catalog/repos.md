@@ -402,7 +402,7 @@ Some repos are intentionally duplicated from the same upstream source so that di
 | **Tech Stack** | React 19, TypeScript, Node.js, Express, SQLite, Material-UI, Vite |
 | **License** | — |
 | **Renamed From** | `client-timesheet-app` (applied `app_` prefix for multi-repo application) |
-| **Challenges** | [Linting & Static Analysis](../modules/testing-qa/linting-static-analysis.md), [Upgrade Dependencies](../modules/security/upgrade-dependencies.md), [Event-Driven SAST Remediation](../modules/security/event-driven-sast-remediation.md), [Mass Security Backlog Remediation](../modules/security/mass-security-backlog-remediation.md), [Fix UI Bug](../modules/application-development/fix-ui-bug.md), [Fix Data Bug](../modules/application-development/fix-data-bug.md), [New Feature Development](../modules/application-development/new-feature-development.md), [CI/CD Pipeline](../modules/devops-cicd/cicd-pipeline.md) |
+| **Challenges** | [Linting & Static Analysis](../modules/testing-qa/linting-static-analysis.md), [Upgrade Dependencies](../modules/security/upgrade-dependencies.md), [Event-Driven SAST Remediation](../modules/security/event-driven-sast-remediation.md), [Mass Security Backlog Remediation](../modules/security/mass-security-backlog-remediation.md), [Fix UI Bug](../modules/application-development/fix-ui-bug.md), [Fix Data Bug](../modules/application-development/fix-data-bug.md), [New Feature Development](../modules/application-development/new-feature-development.md), [CI/CD Pipeline](../modules/devops-cicd/cicd-pipeline.md), [VM to Cloud-Native Migration](../modules/cloud-infrastructure/vm-to-cloud-native-migration.md) (application side) |
 
 ---
 
@@ -412,10 +412,11 @@ Some repos are intentionally duplicated from the same upstream source so that di
 | | |
 |---|---|
 | **URL** | https://github.com/Cognition-Partner-Workshops/hosting-client-timesheet-app |
-| **Description** | Infrastructure/hosting configuration for the client-timesheet-app. Terraform-based. |
-| **Tech Stack** | Terraform, AWS |
+| **Description** | Infrastructure/hosting configuration for the client-timesheet-app. Terraform-based: a `bootstrap` stack (S3 state, DynamoDB locks, ECR, GitHub OIDC role), an `infrastructure` stack (one EC2 instance in the default VPC, Elastic IP, `user_data.sh` that installs Docker and registers a systemd `oneshot` deploy unit, SQLite on a host path), and a divergent `serverless` stack (Lambda + DynamoDB + S3 + API Gateway). Also carries forked copies of two `app_timesheet` source files under `docker/overrides/` that the image overlays at build time. |
+| **Tech Stack** | Terraform, AWS (EC2, ECR, SSM, Lambda, DynamoDB, API Gateway), Docker, GitHub Actions |
 | **License** | — |
-| **Challenges** | [Linting & Static Analysis](../modules/testing-qa/linting-static-analysis.md) (terraform fmt), [IaC Translation](../modules/cloud-infrastructure/iac-translation.md) |
+| **Challenges** | [VM to Cloud-Native Migration](../modules/cloud-infrastructure/vm-to-cloud-native-migration.md), [Linting & Static Analysis](../modules/testing-qa/linting-static-analysis.md) (terraform fmt), [IaC Translation](../modules/cloud-infrastructure/iac-translation.md), [Terraform Module Extraction](../modules/cloud-infrastructure/terraform-module-extraction.md), [Cost Optimization Analysis](../modules/cloud-infrastructure/cost-optimization-analysis.md) |
+| **Notes** | The `infrastructure` stack is the only module in the catalog with a genuine pre-cloud-native *before* state. Its image fails on a fresh instance (root-owned `/opt/app/data` vs. uid 1001) and its forked schema is missing columns the app queries, so `GET /api/clients` 500s in production while all 161 unit tests pass. Pre-verified acceptance gates live in [`workshops/vm-to-cloud-native-migration/scripts`](../workshops/vm-to-cloud-native-migration/scripts). |
 
 ### cal.com
 | | |
