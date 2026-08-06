@@ -408,6 +408,15 @@ Some repos are intentionally duplicated from the same upstream source so that di
 
 ## Non-Prefixed Repos
 
+### ivozprovider
+| | |
+|---|---|
+| **URL** | https://github.com/codev-workshops/ivozprovider |
+| **Description** | Multitenant VoIP telephony platform (Irontec IvozProvider). Kamailio 5.7 SIP proxies, Asterisk 20 LTS/PJSIP application servers, rtpengine media relays, Percona MySQL 8.0, Redis Sentinel, CGRateS billing, PHP 8.2/Symfony REST API, four React portals, nine microservices. Shipped as 25 Debian packages configured by interactive debconf prompts across four host profiles, built by a 780-line Jenkins pipeline. No Terraform, no GitHub Actions, and no way to run the telephony plane locally — a genuine legacy distributed estate. |
+| **Tech Stack** | Kamailio, Asterisk, rtpengine, Percona/MySQL, Redis Sentinel, PHP 8.2, Symfony, API Platform, React, TypeScript, Go, Debian packaging, systemd, BIND, Jenkins, Docker Compose |
+| **License** | GPLv3 |
+| **Challenges** | [On-Prem Platform to AWS Migration](../modules/cloud-infrastructure/onprem-platform-to-aws-migration.md) |
+
 ### hosting-client-timesheet-app
 | | |
 |---|---|

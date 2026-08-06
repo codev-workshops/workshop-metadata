@@ -18,7 +18,7 @@ All hands-on modules organized by engineering discipline. Each module is a self-
 | [Security](security/) | Security Engineer, AppSec Engineer | 7 modules |
 | [Compliance & Governance](compliance-governance/) | Compliance Officer, GRC Analyst | 3 modules |
 | [DevOps & CI/CD](devops-cicd/) | DevOps Engineer, Release Engineer | 5 modules |
-| [Cloud & Infrastructure](cloud-infrastructure/) | Cloud Engineer, Platform Engineer | 6 modules |
+| [Cloud & Infrastructure](cloud-infrastructure/) | Cloud Engineer, Platform Engineer | 7 modules |
 | [Observability & SRE](observability-sre/) | SRE, Observability Engineer | 4 modules |
 | [Data Engineering](data-engineering/) | Data Engineer, Analytics Engineer | 5 modules |
 | [Architecture & Design](architecture-design/) | Solution Architect, Enterprise Architect | 5 modules |
@@ -94,6 +94,7 @@ All hands-on modules organized by engineering discipline. Each module is a self-
 | Module | Difficulty | Time | Repos |
 |--------|-----------|------|-------|
 | [IaC Translation](cloud-infrastructure/iac-translation.md) | Intermediate | 45 min | hosting-client-timesheet-app, cal.com-infra |
+| [On-Prem Platform to AWS Migration](cloud-infrastructure/onprem-platform-to-aws-migration.md) | Advanced | 90 min | ivozprovider |
 | [Platform-Conformant Microservice Decomposition](cloud-infrastructure/platform-conformant-microservice-decomposition.md) | Advanced | 75 min | app_dotnet-angular-monolith, app_dotnet-angular-microservices, platform-engineering-shared-services |
 | [GitOps & ArgoCD Setup](cloud-infrastructure/gitops-argocd-setup.md) | Advanced | 75 min | Multiple repos |
 | [Kubernetes Manifest Generation](cloud-infrastructure/kubernetes-manifest-generation.md) | Intermediate–Advanced | 60 min | Multiple repos |
