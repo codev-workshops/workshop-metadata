@@ -7,7 +7,7 @@ Covers the full *Infra & Platform Migrations* chain — infrastructure analysis 
 translation → CI/CD migration → containerization → validation loops → parallel execution — on a
 real distributed platform rather than a single app on a VM.
 
-- Prompt set: [`prompts.md`](prompts.md)
+- Prompt set: [`prompts.md`](prompts.md) — four prompts (analyse → plan → feedback loop → execute), then two to scale
 - Module: [`../../modules/cloud-infrastructure/onprem-platform-to-aws-migration.md`](../../modules/cloud-infrastructure/onprem-platform-to-aws-migration.md)
 - Opening proof script: [`scripts/verify-topology.sh`](scripts/verify-topology.sh)
 
@@ -20,7 +20,7 @@ real distributed platform rather than a single app on a VM.
 ## Prerequisites
 
 Docker, Terraform CLI, Node 20+, ~90 s for the opening proof. An AWS sandbox account is required
-only if you intend to `apply`; stages 1–3 need no cloud access at all.
+only if you intend to `apply`; prompts 1–3 need no cloud access at all.
 
 ---
 
@@ -145,7 +145,7 @@ Migrate **per plane**, not per host profile.
 | CI/CD | Jenkins + shared library | GitHub Actions, OIDC, ECR, `actions/cache` + path filters | ephemeral runners only |
 | Observability | `logs`/`hep` hosts, Homer | CloudWatch + OpenSearch for HEP capture, exporters → Managed Prometheus/Grafana | SIP capture is how VoIP is debugged; don't drop it |
 
-**Explicit non-goal for stage 1:** do not modernize the signaling/media plane onto Kubernetes with a
+**Explicit non-goal for the first waves:** do not modernize the signaling/media plane onto Kubernetes with a
 service mesh. Containers earn their place on the web, worker and (carefully) Asterisk planes first.
 
 ---
@@ -229,10 +229,10 @@ human step.
 |---|---:|---|
 | 0 | 5 | `docker compose config` is valid — then point out there is no Kamailio, Asterisk or rtpengine in it. "You cannot run the product." |
 | 1 | 10 | `scripts/verify-topology.sh`. Topology rows, then the address columns split ours/theirs. "Your topology is customer data." |
-| 2 | 20 | Ask Devin 1a + 1b live; session 1c produces the docs-only migration plan PR. |
-| 3 | 20 | Stage 3: Devin builds the legacy baseline stack and gets the bbs call-flow suite running. Narrate this as the unlock. |
-| 4 | 20 | Stages 2b/2c: Aurora + ECS/ALB for the web plane, gates pasted in the PR. |
-| 5 | 15 | Playbook, then child sessions fanning out across the 9 microservices; close on the summary table. |
+| 2 | 20 | Prompt 1 (Analyse) live as Ask Devin; prompt 2 (Plan) produces the docs-only migration plan PR. |
+| 3 | 20 | Prompt 3: Devin builds the legacy baseline stack and gets the bbs call-flow suite running. Narrate this as the unlock. |
+| 4 | 20 | Prompt 4: Aurora + ECS/ALB for the web plane, gates pasted in the PR. |
+| 5 | 15 | Prompts 5 and 6: playbook, then child sessions fanning out across the 9 microservices; close on the summary table. |
 
 **Fallbacks.** The plan PR (Act 2) and the baseline stack (Act 3) are each a complete story alone.
 If a session runs long, cut Act 4 and go straight to the fan-out. Never demo `terraform apply` into

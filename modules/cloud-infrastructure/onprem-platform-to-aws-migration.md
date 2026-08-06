@@ -21,11 +21,12 @@ put an ALB in front".
 ## Target Outcomes
 
 - A reviewed, docs-only migration plan with a host-assumption inventory and dependency-ordered waves
+- Four prompts to get there: analyse → plan → build the feedback loop → execute
 - A landing zone in Terraform (VPC, Route 53 private zone replacing per-node BIND, ECR, OIDC, secrets)
 - Aurora MySQL replacing Percona, including the grants and server settings RDS will not allow as-is
 - The web plane containerized on ECS/ALB with secrets, health checks, limits and rollback
 - A runnable local baseline stack + the repo's 48 SIP call-flow scenarios as the acceptance gate
-- GitHub Actions replacing an 780-line Jenkinsfile with a stage-by-stage coverage table
+- GitHub Actions replacing a 780-line Jenkinsfile with a stage-by-stage coverage table
 - A migration playbook and one PR per service from parallel child sessions
 
 ## What Participants Will Learn
@@ -50,7 +51,7 @@ Advanced
 
 ## Estimated Time
 
-90 minutes (stages 1–3 need no AWS account)
+90 minutes (prompts 1–3 need no AWS account)
 
 ---
 
@@ -65,7 +66,8 @@ Jenkins. No Terraform, no GitHub Actions, and no way to run the telephony plane 
 
 Full strategy, wave plan, acceptance gates and run of show:
 [`workshops/onprem-platform-to-aws-migration/`](../../workshops/onprem-platform-to-aws-migration/README.md).
-Complete prompt set: [`prompts.md`](../../workshops/onprem-platform-to-aws-migration/prompts.md).
+Complete prompt set (four prompts — analyse, plan, feedback loop, execute — then two to scale):
+[`prompts.md`](../../workshops/onprem-platform-to-aws-migration/prompts.md).
 
 ### Starting-state findings (verified)
 
@@ -96,9 +98,10 @@ Complete prompt set: [`prompts.md`](../../workshops/onprem-platform-to-aws-migra
 > and rollback; and what must not move in wave 1. No code changes. Put anything you could not
 > determine in an "Open questions" section instead of assuming it.
 
-Then continue with the staged prompts in
-[`prompts.md`](../../workshops/onprem-platform-to-aws-migration/prompts.md) — the feedback-loop
-prompt (stage 3) is the one that changes the demo from plausible to provable.
+That is prompt 2. Prompt 1 (Analyse) comes before it and runs as Ask Devin with no environment;
+prompt 3 builds the feedback loop and is the one that changes the demo from plausible to provable;
+prompt 4 executes the first three waves. See
+[`prompts.md`](../../workshops/onprem-platform-to-aws-migration/prompts.md).
 
 ### Step 2: Research with Ask Devin
 
