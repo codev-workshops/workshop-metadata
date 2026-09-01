@@ -51,6 +51,15 @@ that has contents access to both orgs (`gh auth login` is enough). Creating the 
 Set `SYNC_GITHUB_BASE=https://github.com` if your environment does not rewrite github.com
 through a credential proxy.
 
+## Push protection
+
+Four repos cannot be written to at all: GitHub push protection rejects upstream commits
+containing secrets (`app_timesheet`, `app_eventflow-storefront`, `uc-appsec-nodegoat`,
+`app_eventflow-devin-integration`). The sync reports these as `FAILED` and moves on. An org
+admin has to allow each detected secret from the repo's Security tab before those syncs can
+land; the secrets are not rewritten out of the history here, because that would fork it from
+the source.
+
 ## Maintenance
 
 `discover` reports source repos that are absent from the map and, for each, whether some

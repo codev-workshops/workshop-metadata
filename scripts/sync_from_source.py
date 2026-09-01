@@ -107,7 +107,8 @@ def api_all(path: str, token: str) -> list[dict]:
 
 
 def redact(text: str) -> str:
-    return re.sub(r"(basic|Bearer|github_pat_|ghp_)\S+", r"\1***", text)
+    text = re.sub(r"(?i)\b(basic|bearer)\s+\S+", r"\1 ***", text)
+    return re.sub(r"\b(github_pat_|ghp_|gho_|ghs_)\w+", r"\1***", text)
 
 
 def run(cmd: list[str], cwd: Path | None = None, check: bool = True) -> str:
@@ -225,7 +226,7 @@ def cmd_apply(cfg, mp, tk, args):
     print("== existing pairs ==")
     args.keep = True
     results = cmd_status(cfg, mp, tk, args)
-    changed, prs, skipped = [], [], []
+    changed, prs, skipped, failed = [], [], [], []
     for res in results:
         pair = next(p for p in mp["pairs"] if p["source"] == res["source"] and p["target"] == res["target"])
         policy = pair.get("sync", cfg["sync"])
@@ -244,6 +245,11 @@ def cmd_apply(cfg, mp, tk, args):
                 print(f"  PR for {res['target']}: {prs[-1][1]}")
             elif res["state"] in (DIVERGED, TARGET_AHEAD):
                 skipped.append(res)
+        except Exception as exc:
+            # One unpushable repo (branch protection, push protection, revoked scope)
+            # must never abort the rest of the run.
+            failed.append(res)
+            print(f"  FAILED {res['target']}: {redact(str(exc)).splitlines()[-1][:200]}")
         finally:
             if res["repo"]:
                 res["repo"].close()
@@ -253,7 +259,10 @@ def cmd_apply(cfg, mp, tk, args):
         print("== new repos ==")
         create_missing(cfg, mp, tk, args)
 
-    print(f"\nfast-forwarded: {len(changed)} | PRs: {len(prs)} | left for review: {len(skipped)}")
+    print(f"\nfast-forwarded: {len(changed)} | PRs: {len(prs)} | "
+          f"left for review: {len(skipped)} | failed: {len(failed)}")
+    for res in failed:
+        print(f"  failed: {res['source']} -> {res['target']}")
 
 
 def create_missing(cfg, mp, tk, args):
@@ -271,18 +280,26 @@ def create_missing(cfg, mp, tk, args):
                   + (" (existing empty repo)" if target in existing else " (new repo)"))
             continue
         if target not in existing:
+            src_meta = api(f"repos/{cfg['source_org']}/{source}", token=tk.for_org(cfg["source_org"]))
             api(f"orgs/{cfg['target_org']}/repos", "POST", {
                 "name": target,
                 "description": f"Mirror of {cfg['source_org']}/{source}",
-                "private": True,
+                "private": src_meta["private"],
                 "auto_init": False,
             }, token=tk.tgt)
-        mirror(cfg, source, target, tk)
-        print(f"  mirrored {source} -> {target}")
+        try:
+            mirror(cfg, source, target, tk)
+            print(f"  mirrored {source} -> {target}")
+        except Exception as exc:
+            print(f"  FAILED {source} -> {target}: "
+                  f"{redact(str(exc)).splitlines()[-1][:200]}")
 
 
 def mirror(cfg, source: str, target: str, tk: Tokens):
     """Copy every branch and tag into the (empty) target repo.
+
+    Branches and tags only: `--mirror` would also try to write `refs/pull/*`,
+    which GitHub rejects as hidden refs.
 
     A token without the Workflows permission cannot push commits that touch
     `.github/workflows/`, so that failure is reported rather than worked around
@@ -293,7 +310,8 @@ def mirror(cfg, source: str, target: str, tk: Tokens):
         git_auth(["clone", "-q", "--mirror",
                   f"{GIT_BASE}/{cfg['source_org']}/{source}", str(work / "src.git")], tk.src)
         try:
-            git_auth(["push", "--mirror", f"{GIT_BASE}/{cfg['target_org']}/{target}"],
+            git_auth(["push", f"{GIT_BASE}/{cfg['target_org']}/{target}",
+                      "refs/heads/*:refs/heads/*", "refs/tags/*:refs/tags/*"],
                      tk.tgt, cwd=work / "src.git")
         except RuntimeError as exc:
             if "workflow" in str(exc).lower():

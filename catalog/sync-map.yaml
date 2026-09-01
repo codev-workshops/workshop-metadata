@@ -44,41 +44,42 @@ pairs:
   - source: eventflow-storefront
     target: app_eventflow-storefront
     sync: pr-on-diverge
+    # the sync PR cannot be pushed: GitHub push protection flags a secret in upstream history
     # both sides have unique commits on main; the target ones are lab work
     # diverged as of last verification
   - source: fineract
     target: fineract
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: fineract-web-app
     target: mifos-fineract-web-app
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: jpetstore-6
     target: jpetstore-6
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: keycloak
     target: keycloak
     # in_sync as of last verification
   - source: modular-monolith-ddd
     target: dotnet-modular-monolith
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: modular-monolith-ddd-react
     target: dotnet-modular-monolith-fe-react
     # in_sync as of last verification
   - source: ofbiz-framework
     target: ofbiz-framework
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: openmrs-core
     target: openmrs-core
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: ordermanager-iac
     target: app_dotnet-angular-monolith-iac
     # in_sync as of last verification
   - source: ordermanager-monolith
     target: app_dotnet-angular-monolith
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: petclinic-angular
     target: app_petclinic-angular
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: petclinic-backend
     target: app_petclinic-backend
     # in_sync as of last verification
@@ -87,7 +88,7 @@ pairs:
     # in_sync as of last verification
   - source: platform-engineering-shared-services
     target: platform-engineering-shared-services
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: quickapp-iac
     target: app_dotnet_angular_containerized_decomposition_iac
     # in_sync as of last verification
@@ -102,16 +103,17 @@ pairs:
     # in_sync as of last verification
   - source: ruby-redmine
     target: ruby-redmine
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: timesheet-app
     target: app_timesheet
+    # fast-forward blocked by GitHub push protection (secrets in .github/workflows/deploy.yml)
     # fast_forward as of last verification
   - source: timesheet-infra
     target: hosting-client-timesheet-app
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: traderx
     target: traderXCognitiondemos
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: ts-angular-realworld
     target: ts-angular-realworld-example-app
     # in_sync as of last verification
@@ -141,10 +143,10 @@ pairs:
     # in_sync as of last verification
   - source: ts-java-spring-boot-realworld
     target: ts-java-spring-boot-realworld-example-app
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: ts-java-swagger-petstore
     target: ts-swagger-petstore
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: ts-katalon-web-automation
     target: katalon-web-automation
     # in_sync as of last verification
@@ -159,13 +161,13 @@ pairs:
     # in_sync as of last verification
   - source: ts-react-coreui-admin
     target: coreui-free-react-admin-template
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: ts-sas-legacy-analytics
     target: ts-sas-legacy-codebase
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: ts-serverless-digital-asset-payments
     target: sample-serverless-digital-asset-payments
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: ts-serverless-eda-insurance-claims
     target: serverless-eda-insurance-claims-processing
     # in_sync as of last verification
@@ -174,13 +176,13 @@ pairs:
     # in_sync as of last verification
   - source: uc-cve-remediation-regulatory-compliance
     target: uc-cve-remediation-regulatory-compliance
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: uc-data-migration-airflow
     target: uc-data-migration-airflow
     # in_sync as of last verification
   - source: uc-data-migration-sas-to-snowflake
     target: uc-data-migration-sas-to-snowflake
-    # fast_forward as of last verification
+    # in_sync as of last verification
   - source: uc-data-source-migration-jdbc-normalization
     target: uc-data-source-migration-legacy-to-modern
     # in_sync as of last verification
@@ -217,42 +219,96 @@ pairs:
     # control repo: holds sync-map.yaml and the sync script, so upstream changes must be reviewed
     # (one-time catch-up of 357 upstream commits fast-forwarded on 2026-09-01, before this
     #  repo gained commits of its own)
-    # fast_forward as of last verification
+    # in_sync as of last verification
 
+  - source: ACC-demo-webapp
+    target: ACC-demo-webapp
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: banking-dashboard-api
+    target: banking-dashboard-api
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: eShopModernizing
+    target: eShopModernizing
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: i-retail-mern-ecommerce
+    target: i-retail-mern-ecommerce
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: ordermanager-microservices
+    target: ts-ordermanager-microservices
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: otterworks
+    target: otterworks
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: petclinic-rest-api
+    target: petclinic-rest-api
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: ts-dart-flutter-ecommerce
+    target: ts-dart-flutter-ecommerce
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: ts-java-spring-boot-internet-banking
+    target: ts-java-spring-boot-internet-banking
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: ts-java-struts-claims-management
+    target: ts-java-struts-claims-management
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: ts-python-abinitio-etl
+    target: ts-python-abinitio-etl
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-api-migration-mulesoft-to-boomi
+    target: uc-api-migration-mulesoft-to-boomi
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-api-migration-mulesoft-to-spring-boot
+    target: uc-api-migration-mulesoft-to-spring-boot
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-appsec-mern-marketplace
+    target: uc-appsec-mern-marketplace
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-data-migration-abinitio-to-databricks
+    target: uc-data-migration-abinitio-to-databricks
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-data-migration-abinitio-to-pyspark
+    target: uc-data-migration-abinitio-to-pyspark
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-data-migration-sas-to-databricks
+    target: uc-data-migration-sas-to-databricks
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-db-migration-oracle-to-postgres
+    target: uc-db-migration-oracle-to-postgres
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-dw-migration-teradata-to-bigquery
+    target: uc-dw-migration-teradata-to-bigquery
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-finance-app-automations
+    target: uc-finance-app-automations
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-informatica-sas-to-dbt
+    target: uc-informatica-sas-to-dbt
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-legacy-modernization-struts-to-microservices
+    target: uc-legacy-modernization-struts-to-microservices
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-payment-payload-analysis-banking
+    target: uc-payment-payload-analysis-banking
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-self-healing-data-pipeline
+    target: uc-self-healing-data-pipeline
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-vulnerability-remediation-java-dotnet
+    target: uc-vulnerability-remediation-java-dotnet
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: workshop-operations
+    target: workshop-operations
+    # mirrored from source on 2026-09-01; in_sync as of last verification
 # Source repos with no counterpart in codev-workshops. With `new_repos: mirror` these
 # are created and populated on the next run, then moved into `pairs:`.
 new_repos:
-  - source: ACC-demo-webapp
-  - source: banking-dashboard-api
-  - source: eShopModernizing
   - source: eventflow-devin-integration
     target: app_eventflow-devin-integration
-  - source: i-retail-mern-ecommerce
-  - source: ordermanager-microservices
-    target: ts-ordermanager-microservices
-  - source: otterworks
-  - source: petclinic-rest-api
-  - source: ts-dart-flutter-ecommerce
-  - source: ts-java-spring-boot-internet-banking
-  - source: ts-java-struts-claims-management
-  - source: ts-python-abinitio-etl
-  - source: uc-api-migration-mulesoft-to-boomi
-  - source: uc-api-migration-mulesoft-to-spring-boot
-  - source: uc-appsec-mern-marketplace
+    # empty target created; the mirror push is blocked by GitHub push protection
+    # (a secret in upstream history) — an org admin must allow it before it can be filled
   - source: uc-appsec-nodegoat
-  - source: uc-data-migration-abinitio-to-databricks
-  - source: uc-data-migration-abinitio-to-pyspark
-  - source: uc-data-migration-sas-to-databricks
-  - source: uc-db-migration-oracle-to-postgres
-  - source: uc-dw-migration-teradata-to-bigquery
-  - source: uc-finance-app-automations
-    target: uc-finance-app-automations
-  - source: uc-informatica-sas-to-dbt
-  - source: uc-legacy-modernization-struts-to-microservices
-  - source: uc-payment-payload-analysis-banking
-  - source: uc-self-healing-data-pipeline
-  - source: uc-vulnerability-remediation-java-dotnet
-  - source: workshop-operations
+    # same: node_modules in upstream history carries AWS test keys
+
 
 # Same name in both orgs, completely different history. Documented so nobody ever
 # "fixes" the map by matching these on name.
