@@ -24,34 +24,33 @@ defaults:
 
 pairs:
   - source: calcom
-    target: cal.com
+    target: calcom
     # in_sync as of last verification
   - source: calcom-dataeng
-    target: cal.com-dataeng
+    target: calcom-dataeng
     # in_sync as of last verification
   - source: calcom-infra
-    target: cal.com-infra
+    target: calcom-infra
     # in_sync as of last verification
   - source: eventflow-infra
-    target: app_eventflow-infra
+    target: eventflow-infra
     # in_sync as of last verification
   - source: eventflow-order-service
-    target: app_eventflow-order-service
+    target: eventflow-order-service
     # in_sync as of last verification
   - source: eventflow-payment-service
-    target: app_eventflow-payment-service
+    target: eventflow-payment-service
     # in_sync as of last verification
   - source: eventflow-storefront
-    target: app_eventflow-storefront
+    target: eventflow-storefront
     sync: pr-on-diverge
-    # the sync PR cannot be pushed: GitHub push protection flags a secret in upstream history
     # both sides have unique commits on main; the target ones are lab work
-    # diverged as of last verification
+    # diverged as of last verification; open sync PR: codev-workshops/eventflow-storefront#1
   - source: fineract
     target: fineract
     # in_sync as of last verification
   - source: fineract-web-app
-    target: mifos-fineract-web-app
+    target: fineract-web-app
     # in_sync as of last verification
   - source: jpetstore-6
     target: jpetstore-6
@@ -60,10 +59,10 @@ pairs:
     target: keycloak
     # in_sync as of last verification
   - source: modular-monolith-ddd
-    target: dotnet-modular-monolith
+    target: modular-monolith-ddd
     # in_sync as of last verification
   - source: modular-monolith-ddd-react
-    target: dotnet-modular-monolith-fe-react
+    target: modular-monolith-ddd-react
     # in_sync as of last verification
   - source: ofbiz-framework
     target: ofbiz-framework
@@ -72,107 +71,106 @@ pairs:
     target: openmrs-core
     # in_sync as of last verification
   - source: ordermanager-iac
-    target: app_dotnet-angular-monolith-iac
+    target: ordermanager-iac
     # in_sync as of last verification
   - source: ordermanager-monolith
-    target: app_dotnet-angular-monolith
+    target: ordermanager-monolith
     # in_sync as of last verification
   - source: petclinic-angular
-    target: app_petclinic-angular
+    target: petclinic-angular
     # in_sync as of last verification
   - source: petclinic-backend
-    target: app_petclinic-backend
+    target: petclinic-backend
     # in_sync as of last verification
   - source: petclinic-microservices
-    target: app_petclinic-microservices
+    target: petclinic-microservices
     # in_sync as of last verification
   - source: platform-engineering-shared-services
     target: platform-engineering-shared-services
     # in_sync as of last verification
   - source: quickapp-iac
-    target: app_dotnet_angular_containerized_decomposition_iac
+    target: quickapp-iac
     # in_sync as of last verification
   - source: quickapp-microfrontends
-    target: app_dotnet_angular_containerized_decomposition_microfrontends
+    target: quickapp-microfrontends
     # in_sync as of last verification
   - source: quickapp-microservices
-    target: app_dotnet_angular_containerized_decomposition_microservices
+    target: quickapp-microservices
     # in_sync as of last verification
   - source: quickapp-monolith
-    target: app_dotnet_angular_containerized_decomposition_monolith
+    target: quickapp-monolith
     # in_sync as of last verification
   - source: ruby-redmine
     target: ruby-redmine
     # in_sync as of last verification
   - source: timesheet-app
-    target: app_timesheet
-    # fast-forward blocked by GitHub push protection (secrets in .github/workflows/deploy.yml)
-    # fast_forward as of last verification
+    target: timesheet-app
+    # in_sync as of last verification
   - source: timesheet-infra
-    target: hosting-client-timesheet-app
+    target: timesheet-infra
     # in_sync as of last verification
   - source: traderx
-    target: traderXCognitiondemos
+    target: traderx
     # in_sync as of last verification
   - source: ts-angular-realworld
-    target: ts-angular-realworld-example-app
+    target: ts-angular-realworld
     # in_sync as of last verification
   - source: ts-angularjs-blur-admin
-    target: angular-1.x-bootstrap-admin-dashboard
+    target: ts-angularjs-blur-admin
     # in_sync as of last verification
   - source: ts-angularjs-dashboard-widgets
-    target: angular-1.x-dashboard
+    target: ts-angularjs-dashboard-widgets
     # in_sync as of last verification
   - source: ts-cobol-carddemo
-    target: aws-mainframe-modernization-carddemo
+    target: ts-cobol-carddemo
     # in_sync as of last verification
   - source: ts-informatica-powercenter
-    target: Informatica-Demo
+    target: ts-informatica-powercenter
     # in_sync as of last verification
   - source: ts-java-angular-jhipster
-    target: ts-angular-springboot-jhipster-sample
+    target: ts-java-angular-jhipster
     # in_sync as of last verification
   - source: ts-java-mulesoft-employee-api
-    target: ts-java-mulesoft-employee-service-api
+    target: ts-java-mulesoft-employee-api
     # in_sync as of last verification
   - source: ts-java-real-estate-management
-    target: real-estate-management
+    target: ts-java-real-estate-management
     # in_sync as of last verification
   - source: ts-java-selenium-testng
-    target: ts-selenium-simple
+    target: ts-java-selenium-testng
     # in_sync as of last verification
   - source: ts-java-spring-boot-realworld
-    target: ts-java-spring-boot-realworld-example-app
+    target: ts-java-spring-boot-realworld
     # in_sync as of last verification
   - source: ts-java-swagger-petstore
-    target: ts-swagger-petstore
+    target: ts-java-swagger-petstore
     # in_sync as of last verification
   - source: ts-katalon-web-automation
-    target: katalon-web-automation
+    target: ts-katalon-web-automation
     # in_sync as of last verification
   - source: ts-plsql-oracle-forms-hrms
-    target: ts-plsql-oracle-forms-legacy-codebase
+    target: ts-plsql-oracle-forms-hrms
     # in_sync as of last verification
   - source: ts-python-aws-personalize
-    target: amazon-personalize-immersion-day
+    target: ts-python-aws-personalize
     # in_sync as of last verification
   - source: ts-python-streamify-data-engineering
-    target: streamify-data-engineering
+    target: ts-python-streamify-data-engineering
     # in_sync as of last verification
   - source: ts-react-coreui-admin
-    target: coreui-free-react-admin-template
+    target: ts-react-coreui-admin
     # in_sync as of last verification
   - source: ts-sas-legacy-analytics
-    target: ts-sas-legacy-codebase
+    target: ts-sas-legacy-analytics
     # in_sync as of last verification
   - source: ts-serverless-digital-asset-payments
-    target: sample-serverless-digital-asset-payments
+    target: ts-serverless-digital-asset-payments
     # in_sync as of last verification
   - source: ts-serverless-eda-insurance-claims
-    target: serverless-eda-insurance-claims-processing
+    target: ts-serverless-eda-insurance-claims
     # in_sync as of last verification
   - source: uc-bdd-test-generation-cucumber
-    target: uc-bdd-test-generation-rest-api
+    target: uc-bdd-test-generation-cucumber
     # in_sync as of last verification
   - source: uc-cve-remediation-regulatory-compliance
     target: uc-cve-remediation-regulatory-compliance
@@ -184,7 +182,7 @@ pairs:
     target: uc-data-migration-sas-to-snowflake
     # in_sync as of last verification
   - source: uc-data-source-migration-jdbc-normalization
-    target: uc-data-source-migration-legacy-to-modern
+    target: uc-data-source-migration-jdbc-normalization
     # in_sync as of last verification
   - source: uc-document-review-automation
     target: uc-document-review-automation
@@ -193,7 +191,7 @@ pairs:
     target: uc-dw-migration-teradata-to-snowflake
     # target_ahead as of last verification
   - source: uc-java-upgrade-broadleaf-commerce
-    target: uc-language-upgrade-java-BroadleafCommerce
+    target: uc-java-upgrade-broadleaf-commerce
     # in_sync as of last verification
   - source: uc-legacy-modernization-cobol-to-java
     target: uc-legacy-modernization-cobol-to-java
@@ -234,7 +232,7 @@ pairs:
     target: i-retail-mern-ecommerce
     # mirrored from source on 2026-09-01; in_sync as of last verification
   - source: ordermanager-microservices
-    target: ts-ordermanager-microservices
+    target: ordermanager-microservices
     # mirrored from source on 2026-09-01; in_sync as of last verification
   - source: otterworks
     target: otterworks
@@ -299,35 +297,43 @@ pairs:
   - source: workshop-operations
     target: workshop-operations
     # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: eventflow-devin-integration
+    target: eventflow-devin-integration
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+  - source: uc-appsec-nodegoat
+    target: uc-appsec-nodegoat
+    # mirrored from source on 2026-09-01; in_sync as of last verification
+
 # Source repos with no counterpart in codev-workshops. With `new_repos: mirror` these
 # are created and populated on the next run, then moved into `pairs:`.
-new_repos:
-  - source: eventflow-devin-integration
-    target: app_eventflow-devin-integration
-    # empty target created; the mirror push is blocked by GitHub push protection
-    # (a secret in upstream history) — an org admin must allow it before it can be filled
-  - source: uc-appsec-nodegoat
-    # same: node_modules in upstream history carries AWS test keys
+new_repos: []
 
 
 # Same name in both orgs, completely different history. Documented so nobody ever
 # "fixes" the map by matching these on name.
+# Resolved on 2026-09-01: the unrelated same-name repo was renamed to `<name>-lab` and
+# archived, then the real copy took the source name — so `target` now equals `source`
+# everywhere except workshop-content -> workshop-metadata (this repo).
 collisions:
   - source: ordermanager-monolith
-    real_target: app_dotnet-angular-monolith
-    unrelated_same_name_target: ordermanager-monolith
+    real_target: ordermanager-monolith          # was app_dotnet-angular-monolith
+    unrelated_same_name_target: ordermanager-monolith-lab           # archived
   - source: ordermanager-iac
-    real_target: app_dotnet-angular-monolith-iac
-    unrelated_same_name_target: ordermanager-iac
+    real_target: ordermanager-iac               # was app_dotnet-angular-monolith-iac
+    unrelated_same_name_target: ordermanager-iac-lab                # archived
   - source: uc-data-source-migration-jdbc-normalization
-    real_target: uc-data-source-migration-legacy-to-modern
-    unrelated_same_name_target: uc-data-source-migration-jdbc-normalization
+    real_target: uc-data-source-migration-jdbc-normalization
+    # was uc-data-source-migration-legacy-to-modern
+    unrelated_same_name_target: uc-data-source-migration-jdbc-normalization-lab   # archived
+  - source: ordermanager-microservices
+    real_target: ordermanager-microservices     # was ts-ordermanager-microservices
+    unrelated_same_name_target: ordermanager-microservices-lab      # archived
 
 # Duplicate copies inside codev-workshops (same root commit), archived on 2026-09-01.
 # Listed here so the sync never writes to them.
 duplicates:
   - repo: mainframe-modernization-carddemo
-    duplicate_of: aws-mainframe-modernization-carddemo
+    duplicate_of: ts-cobol-carddemo
     note: 1 branch, 0 PRs, stale copy of the CardDemo upstream; archived
   - repo: uc-framework-upgrade-monolith-to-microservices
     duplicate_of: uc-spring-boot-upgrade-microservice-extraction
@@ -373,9 +379,9 @@ ignore_targets:
   - oracle-pg-lab-session-a
   - oracle-pg-lab-session-b
   - oracle-to-postgres-migration-lab
-  - ordermanager-iac
-  - ordermanager-microservices
-  - ordermanager-monolith
+  - ordermanager-iac-lab
+  - ordermanager-microservices-lab
+  - ordermanager-monolith-lab
   - owid-etl
   - patient-profile-react
   - ponytail
@@ -389,7 +395,7 @@ ignore_targets:
   - tibco-examples
   - todo-app-sandbox-infra
   - uc-Quality-Engineering-and-Assurance
-  - uc-data-source-migration-jdbc-normalization
+  - uc-data-source-migration-jdbc-normalization-lab
   - ui-implementation-demo
   - weather-dashboard
   - weather-dashboard-al-test
