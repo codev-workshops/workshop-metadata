@@ -36,6 +36,9 @@ workshop-content/
 ├── demos/                   ← facilitator-led showcases (follow along, single linear thread, persona-targeted)
 ├── events/                  ← event-specific, non-reusable agendas and customizations
 ├── catalog/                 ← machine-readable inventory of all available repositories (for agents + humans)
+│   ├── sync-map.yaml        ← pairing of this org's repos with their codev-workshops copies
+│   └── SYNC.md              ← how upstream changes reach codev-workshops
+├── scripts/                 ← sync_from_source.py: fast-forward / PR sync driven by sync-map.yaml
 └── reference/               ← shared lookup material used across courses, workshops, and labs
     ├── general-themes/      ← how Devin works: architecture, patterns, collaboration
     └── runtime-resources.md ← how to run lab apps locally
