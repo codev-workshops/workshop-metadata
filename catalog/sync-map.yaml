@@ -20,7 +20,7 @@ defaults:
   source_org: Cognition-Partner-Workshops
   target_org: codev-workshops
   sync: ff-only
-  new_repos: report          # report | mirror  (mirror needs GITHUB_MIRROR_PAT)
+  new_repos: mirror          # report | mirror  (mirror needs GITHUB_MIRROR_PAT)
 
 pairs:
   - source: calcom
@@ -215,6 +215,8 @@ pairs:
     target: workshop-metadata
     sync: pr-on-diverge
     # control repo: holds sync-map.yaml and the sync script, so upstream changes must be reviewed
+    # (one-time catch-up of 357 upstream commits fast-forwarded on 2026-09-01, before this
+    #  repo gained commits of its own)
     # fast_forward as of last verification
 
 # Source repos with no counterpart in codev-workshops. With `new_repos: mirror` these
@@ -265,15 +267,16 @@ collisions:
     real_target: uc-data-source-migration-legacy-to-modern
     unrelated_same_name_target: uc-data-source-migration-jdbc-normalization
 
-# Duplicate copies inside codev-workshops (same root commit). Pending a decision on
-# archiving; listed here so the sync never writes to them.
+# Duplicate copies inside codev-workshops (same root commit), archived on 2026-09-01.
+# Listed here so the sync never writes to them.
 duplicates:
   - repo: mainframe-modernization-carddemo
     duplicate_of: aws-mainframe-modernization-carddemo
-    note: 1 branch, 0 PRs, stale copy of the CardDemo upstream
+    note: 1 branch, 0 PRs, stale copy of the CardDemo upstream; archived
   - repo: uc-framework-upgrade-monolith-to-microservices
     duplicate_of: uc-spring-boot-upgrade-microservice-extraction
-    note: pre-rename name; 0 unique commits on main but 26 branches / 25 PRs of lab history
+    note: pre-rename name; 0 unique commits on main but 26 branches / 25 PRs of lab history;
+      open PRs closed and repo archived (history stays readable)
 
 # codev-workshops repos that are not derived from the source org. The sync tool
 # never touches anything outside `pairs:`; this list only documents intent.
